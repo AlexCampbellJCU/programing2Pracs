@@ -1,0 +1,24 @@
+BoxLayout:
+    orientation: 'vertical'
+    BoxLayout:
+        orientation: 'horizontal'
+        TextInput:
+            id: input_miles
+            text: '1337'
+            font_size: 40
+            on_text: app.handle_calculate()
+        BoxLayout:
+            orientation: 'vertical'
+            Button:
+                text: 'Increase'
+                color: (255, 1, 1, 1)
+                on_press: app.handle_increment(1)
+            Button:
+                text: 'Decrease'
+                color: (1, 255, 255, 1)
+                on_press: app.handle_increment(-1)
+    Label:
+        id: output_label
+        font_size: 50
+        text: '2151.693'
+        color: (1, 255, 1, 1)
