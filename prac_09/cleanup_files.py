@@ -13,7 +13,7 @@ def main():
         # print("(Current working directory is: {})".format(os.getcwd()))
 
         for filename in filenames:
-            new_name = get_fixed_filename(filename)
+            new_name = get_fixed_filename(filename).replace(".TXT", ".txt").replace(" ", "_")
             print("Renaming {} to {}".format(filename, new_name))
 
             full_name = os.path.join(directory_name, filename)
@@ -22,18 +22,16 @@ def main():
 
 
 def get_fixed_filename(filename):
-    r = filename[0].replace(" ", "_").replace(".TXT", ".txt")
+    new_name = filename[0]
 
     for i, letter in enumerate(filename[1:], 1):
         if letter.isupper():
             try:
-                if filename[i-1].islower() or filename[i+1].islower():
-                    r += '_'
+                if filename[i-1].islower() or filename[i+1].islower() and filename[i - 1] != '(':
+                    new_name += '_'
             except IndexError:
                 pass
-        r += letter.replace(" ", "_").replace(".TXT", ".txt")
-    return r
-    # Need to fix double underscores
-    # return new_name
+        new_name += letter
+    return new_name
 
 main()
